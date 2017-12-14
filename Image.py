@@ -41,7 +41,7 @@ class Picture:
             :param rgb:
             :return:
             """
-            return math.sqrt(rgb[0] ** 2 + rgb[1] ** 2 + rgb[2] ** 2) < 100
+            return math.sqrt(rgb[0] ** 2 + rgb[1] ** 2 + rgb[2] ** 2) < 50
 
         for i in range(width):
             for j in range(height):
