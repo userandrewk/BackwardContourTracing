@@ -5,3 +5,4 @@ for i in range(1, 8):
     image.segmentation()
     image.find_contor()
     image.show_image()
+    image.save_as("result%d.jpeg" % i)

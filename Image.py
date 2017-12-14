@@ -72,5 +72,5 @@ class Picture:
         :param sava_as:
         :return:
         """
-        self.__image.save(sava_as, "JPG")
+        self.__image.save(sava_as, "JPEG")
 
