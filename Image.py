@@ -1,16 +1,17 @@
 from PIL import Image, ImageDraw
-from Backward_contour_tracing import BackwardTracindContor
+from Backward_contour_tracing import BackwardTracingContour
 import math
 
 
 class Picture:
     """
-
+    Class with represent Image. Class can find contour, make new segmentation`s
+    image from given, show and save image.
     """
     def __init__(self, name):
         """
-
-        :param name:
+        Init the class, open an image and make a copy`s image.
+        :param name: str
         """
         self.__image = Image.open(name)
         self.__seg_im = self.__image.copy()
@@ -18,18 +19,19 @@ class Picture:
 
     def find_contor(self):
         """
-
-        :return:
+        Find pixels with are in the contour.
+        :return: list
         """
-        bst = BackwardTracindContor(self.__seg_im)
+        bst = BackwardTracingContour(self.__seg_im)
         self.contor = bst.contor
 
         return bst.contor
 
     def segmentation(self):
         """
-
-        :return:
+        This function make a white-black image from the normal image. And use an another function
+        is_black() which are inside the segmentation().
+        :return: None
         """
         width = self.__seg_im.size[0]  # Ширина.
         height = self.__seg_im.size[1]  # Висота.
@@ -37,9 +39,10 @@ class Picture:
 
         def is_black(rgb):
             """
-
-            :param rgb:
-            :return:
+            This function take`s pixel which represent by list of rgb-colors and find
+            an Evklid`s value.
+            :param rgb: list
+            :return: bool
             """
             return math.sqrt(rgb[0] ** 2 + rgb[1] ** 2 + rgb[2] ** 2) < 50
 
@@ -54,8 +57,8 @@ class Picture:
 
     def show_image(self):
         """
-
-        :return:
+        This function draw contour onto given image and show new image.
+        :return: None
         """
 
         draw = ImageDraw.Draw(self.__image)
@@ -68,9 +71,9 @@ class Picture:
 
     def save_as(self, sava_as):
         """
-
-        :param sava_as:
-        :return:
+        This function can save ready image in JPEG format.
+        :param sava_as: sting
+        :return: None
         """
         self.__image.save(sava_as, "JPEG")
 

@@ -2,12 +2,15 @@ import math
 
 
 class Tent:
+    """
+    This class represent eight connecting net.
+    """
     def __init__(self, pixel, pixels, start_position):
         """
-
-        :param pixel:
-        :param pixels:
-        :param start_position:
+        Init the pixel in centre of net, and net starting from the give position.
+        :param pixel: list
+        :param pixels: dict
+        :param start_position: int
         """
         self.__pixels = pixels
         self.__pixel = pixel
@@ -17,8 +20,8 @@ class Tent:
 
     def __create_tent(self):
         """
-
-        :return:
+        This function create net from neighborhood of active pixel.
+        :return: list(tuple(int,int)...)
         """
         tent = [(self.__pixel[0], self.__pixel[1] - 1), (self.__pixel[0] + 1, self.__pixel[1] - 1),
                 (self.__pixel[0] + 1, self.__pixel[1]), (self.__pixel[0] + 1, self.__pixel[1] + 1),
@@ -29,8 +32,8 @@ class Tent:
 
     def clock_next(self):
         """
-
-        :return:
+        Add value to clock counter and return current pixel
+        :return: pixel
         """
         self.clock_num += 1
 
@@ -41,8 +44,8 @@ class Tent:
 
     def non_cloc_next(self):
         """
-
-        :return:
+        Add value to non-clock counter and return current pixel
+        :return: pixel
         """
         self.non_clock_num -= 1
         if self.non_clock_num < 0:
@@ -53,13 +56,20 @@ class Tent:
     @staticmethod
     def is_black(pixel):
         """
-
-        :param pixel:
-        :return:
+        This function take`s pixel which represent by list of rgb-colors and find
+        an Evklid`s value.
+        :param pixel: tuple(int,int,int)
+        :return:bool
         """
         return math.sqrt(pixel[0] ** 2 + pixel[1] ** 2 + pixel[2] ** 2) < 80
 
     def is_contor(self, position):
+        """
+        Check if the pixel which are on given position in matrix of pixels
+        are in the contour.
+        :param position: int
+        :return: bool
+        """
         if position == 0:
             next = 1
             previous = 7

@@ -2,8 +2,17 @@ from Tent import Tent
 import math
 
 
-class BackwardTracindContor:
+class BackwardTracingContour:
+    """
+    This class represent the backward tracing contour algorithms.
+    And have only two function find_pixel(), find_contour().
+    """
     def __init__(self, image):
+        """
+        Classes init the and init matrix of pixels from image and
+        init a width and height of image.
+        :param image:
+        """
         self.__pixels = image.load()
         self.__width = image.size[0]
         self.__height = image.size[1]
@@ -33,8 +42,9 @@ class BackwardTracindContor:
 
     def find_contor(self):
         """
-
-        :return:
+        Find contour of given segmentation`s image
+        by backward tracing contour algorithms.
+        :return: None
         """
         self.contor.append(self.Ps)
         self.Pa = self.Ps
